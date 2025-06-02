@@ -30,7 +30,7 @@ public class Main {
                     System.out.println("Enter Date in the format following format: ");
                     System.out.println("DD-MM-YYYY");
                     date = scanner.nextLine();
-                    System.out.println("The Starting Day is: " + dayFinder.getDayName(dayFinder.getDayOfDate(date)));
+                    System.out.println("The Starting Day is: " + dayFinder.getDayName(dayFinder.getDay(date)));
                     break;
                 case 3:
                     System.out.println("Current Month Calendar: ");
@@ -38,13 +38,13 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Previous Month Calendar: ");
-                    day = dayFinder.getDayOfMonth(String.valueOf(dayFinder.getMonth() - 1) + "-" + String.valueOf(dayFinder.getYear()));
+                    day = dayFinder.getDay(String.valueOf(dayFinder.getMonth() - 1) + "-" + String.valueOf(dayFinder.getYear()));
                     System.out.println(day);
                     calendarPrinter.printDays(day, dayFinder.getMonth() - 1, dayFinder.getYear());
                     break;
                 case 5:
                     System.out.println("Next Month Calendar: ");
-                    day = dayFinder.getDayOfMonth(String.valueOf(dayFinder.getMonth() + 1) + "-" + String.valueOf(dayFinder.getYear()));
+                    day = dayFinder.getDay(String.valueOf(dayFinder.getMonth() + 1) + "-" + String.valueOf(dayFinder.getYear()));
                     calendarPrinter.printDays(day, dayFinder.getMonth() + 1, dayFinder.getYear());
                     break;
                 case 6:

@@ -1,8 +1,11 @@
 package utils;
 
 public class CalendarPrinter {
+    DayHelper dayHelper;
 
-    public CalendarPrinter () {}
+    public CalendarPrinter () {
+        this.dayHelper = new DayHelper();
+    }
 
     private void printDesign () {
         for (int line = 1; line <= 33; line++) {
@@ -13,7 +16,7 @@ public class CalendarPrinter {
 
     public void printDays (int startDay, int monthId, int year) {
         String monthName = DayHelper.months[monthId - 1];
-        int noOfDays = DayHelper.noOfDaysInMonth[monthId - 1];
+        int noOfDays = dayHelper.noOfDaysInMonth[monthId - 1];
         System.out.println("Calender Month:" + monthName + " " + year);
         printDesign();
         System.out.print("| ");
