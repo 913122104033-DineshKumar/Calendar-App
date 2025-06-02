@@ -7,43 +7,44 @@ public class CalendarPrinter {
         this.dayHelper = new DayHelper();
     }
 
-    private void printDesign () {
-        for (int line = 1; line <= 33; line++) {
-            System.out.print("- ");
-        }
-        System.out.println();
+    private void printDesign () { // Designing the borders with lines
+        System.out.println("- ".repeat(33));
     }
 
-    public void printDays (int startDay, int monthId, int year) {
-        String monthName = DayHelper.months[monthId - 1];
-        int noOfDays = dayHelper.noOfDaysInMonth[monthId - 1];
+    public void printDays (int currentDate, int startDay, int monthId, int year) {
+        String monthName = DayHelper.months[monthId - 1]; // Fetching the Month Name
+        int noOfDays = dayHelper.noOfDaysInMonth[monthId - 1]; // Fetching the number of days in a month
         System.out.println("Calender Month:" + monthName + " " + year);
         printDesign();
-        System.out.print("| ");
-        for (String day : DayHelper.days) {
+        System.out.print("| "); // Start Border
+        for (String day : DayHelper.days) { // Printing the Days sequentially
             System.out.printf("%-8s ", day);
         }
-        System.out.println("|");
+        System.out.println("|"); // End Border
         printDesign();
         int currentDay = 1;
-        int day = startDay;
+        int day = startDay; // Copy of original day.
         System.out.print("| ");
-        for (int space = 0; space < day; space++) {
+        for (int space = 0; space < day; space++) { // Leaving the space until the currentDay reaches the day.
             System.out.printf("%-9s", "");
         }
         while (currentDay <= noOfDays) {
-            System.out.printf("%-8d ", currentDay);
-            if ((day + 1) % 7 == 0) {
-                System.out.println("|");
+            if (currentDay == currentDate) {
+                System.out.printf("%-8s ", "[" + currentDay + "]"); // Specifying the given date with [day].
+            } else {
+                System.out.printf("%-8d ", currentDay);
+            }
+            if ((day + 1) % 7 == 0) { // If the day is 0, then closing the current line and starting the next line.
+                System.out.println("|"); // End Border
                 if (currentDay != noOfDays) {
-                    System.out.print("| ");
+                    System.out.print("| "); // Start Border
                 }
             }
             day = (day + 1) % 7;
             currentDay++;
         }
         if (day != 0) {
-            for (int i = day; i < 7; i++) {
+            for (int i = day; i < 7; i++) { // Ending the last line with extra spaces, if needed.
                 System.out.printf("%-9s", "");
             }
             System.out.println("|");
